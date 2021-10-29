@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>个人博客</title>
+<link href="/static/front/css/base.css" rel="stylesheet">
+<link rel="icon" href="/static/front/images/zlkt.ico" type="image/x-icon"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script src="/static/front/js/jquery.js"></script>
+<script src="/static/front/js/nav.js"></script>
+</head>
+<body>
+
+{{template "front/header.html" .}}
+<!--header end-->
+<main>
+  <article>
+    <!--new_blog 最新文章 begin-->
+    <div class="new_blog">
+      <ul class="blogs">
+          {{range .posts}}
+              <li>
+                  <a href="{{urlfor "IndexController.PostDetail"}}?id={{.Id}}" target="_blank">
+                      <i><img src="/{{.Cover}}" alt="标题图片"></i>
+                      <h2>{{.Title}}</h2>
+                  </a>
+                  <p class="blog_smalltext">
+                      {{.Desc}}
+                  </p>
+                  <p class="blog_info">
+                      <span>{{date .CreateTime "Y-m-d H:i:s"}}</span>
+                      <span>{{.Author.UserName}}</span>
+                      <span>
+              <!-- 分类 -->
+              {{/*<a href="info.html" target="_blank">golang</a>*/}}
+            </span>
+                      <!-- 阅读量 -->
+                      <span>{{.ReadNum}}</span>
+                      <!-- 点赞数 -->
+                      <span>{{.StarNum}}</span>
+                  </p>
+              </li>
+          {{end}}
+      </ul>
+    </div>
+    <!--new_blog 最新文章 end--> 
+    
+  </article>
+  <!--article end-->
+  <aside>
+    <div class="search">
+      <form action="">
+        <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字词" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字词'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字词'}" type="text">
+        <input name="show" value="title" type="hidden">
+        <input name="tempid" value="1" type="hidden">
+        <input name="tbname" value="news" type="hidden">
+        <input name="Submit" class="input_submit" value="搜索" type="submit">
+      </form>
+    </div>
+    <div class="paihang">
+      <h2 class="aside_title">管理员推荐</h2>
+      <ol start="1">
+        <li>
+          <a href="/" target="_blank">
+            有道无术，术尚可求也，有术无道，止于术。
+          </a>
+        </li>
+      </ol>
+      <ol start="2">
+        <li>
+          <a href="/" target="_blank">
+            弱小和无知不是生存的障碍，傲慢才是。
+          </a>
+        </li>
+      </ol>
+      <ol start="3">
+        <li>
+          <a href="/" target="_blank">
+            君子务本,本立而道生。
+          </a>
+        </li>
+      </ol>
+    </div>
+    <div class="links">
+      <h2 class="aside_title">其他入口</h2>
+      <ul>
+        <li><a href="http://github.com/vczs" target="_blank">github</a></li>
+        <li><a href="https://hub.docker.com/u/vczs" target="_blank">dockerhub</a></li>
+        <li><a href="/cms" target="_blank">管理员登录</a></li>
+      </ul>
+    </div>
+  </aside>
+  <!--aside end--> 
+</main>
+
+{{template "front/footer.html" .}}
+<!--footer end-->
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+CREATE TABLE `sys_user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(255) NOT NULL DEFAULT '' COMMENT '用户名',
+  `password` varchar(255) NOT NULL DEFAULT '' COMMENT '密码',
+  `is_admin` int NOT NULL DEFAULT '2' COMMENT '1是管理员 2是用户',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `cover` varchar(255) NOT NULL DEFAULT 'static/upload/bq3.png' COMMENT '头像',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_name` (`user_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+

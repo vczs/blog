@@ -1,0 +1,243 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>个人博客</title>
+<link href="/static/front/css/base.css" rel="stylesheet">
+<link rel="icon" href="/static/front/images/zlkt.ico" type="image/x-icon"/>
+<link rel="stylesheet" href="/static/front/css/app-4.9.css">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script src="/static/front/js/jquery.js"></script>
+<script src="/static/front/js/nav.js"></script>
+
+</head>
+<body>
+
+{{template "front/header.html" .}}
+<!--header end-->
+<main>
+  <p class="weizhi">您现在的位置是：
+    <a href="/" target="_blank">首页</a>><a href="/" target="_blank">帖子详情</a>
+  </p>
+  <article>
+    <div class="container">
+      <h1>{{.post.Title}}</h1>
+      <p class="blog_info">
+        <span>{{date .post.CreateTime "Y-m-d H:i:s"}}</span>
+        <span>{{.post.Author.UserName}}</span>
+        <span>{{.post.ReadNum}}</span>
+        <span>{{.post.StarNum}}</span>
+      </p>
+      <div class="content"> 
+       {{.post.Content}}
+      </div>
+      <br>
+      <br>
+      <div class="pinglun_box">
+        <h2>文章评论</h2>
+        <div class="bottom-area">
+          <div id="comments" class="comments-area">
+              <ol class="comment-list">
+                    {{range .comment_trees}}
+                      <li id="comment-20" class="comment even thread-even depth-1 parent">
+                          <!-- 一级评论 -->
+                          <article id="div-comment-20" class="comment-wrapper u-clearfix">
+                              <!-- 头像 -->
+                              <div class="comment-author-avatar">
+                                  <img alt='' src='/{{.Author.Cover}}' class='avatar avatar-96 photo'>
+                              </div>
+                              <div class="comment-content">
+                                  <!-- 作者 -->
+                                  <div class="comment-author-name vcard" itemprop="author">
+                                      <cite class="fn">
+                                        <a href='javascript:;' rel='external nofollow' class='url'>
+                                          {{.Author.UserName}}
+                                        </a>
+                                      </cite>
+                                  </div>
+                                  <!-- 时间 -->
+                                  <div class="comment-metadata">
+                                      <time datetime="2019-11-02T16:46:39+08:00"
+                                          itemprop="datePublished">
+                                            {{date .CreateTime "Y-m-d H:i:s"}}
+                                        </time>
+                                        <span style="margin-left: 520px;">
+                                            <input type="hidden"  value="{{.Author.UserName}}">
+                                            <input type="hidden"  value="{{.Id}}">
+                                          <a style="cursor: pointer;" class="reply">回复</a>
+                                        </span>
+                                  </div>
+                                  <!-- 评论内容 -->
+                                  <div class="comment-body" itemprop="comment">
+                                      <p>{{.Content}}</p>
+                                  </div>
+                              </div>
+                          </article>
+
+                          <!-- 二级评论 -->
+                          {{range .Children}}
+                              <ol class="children">
+                                  <li class="comment byuser comment-author-aliwen bypostauthor odd alt depth-2">
+                                      <article class="comment-wrapper u-clearfix">
+                                          <!-- 头像 -->
+                                          <div class="comment-author-avatar vcard">
+                                              <img alt='' src='/{{.Author.Cover}}'  class='lazyload avatar avatar-96 photo '
+                                              height='96' width='96'>
+                                          </div>
+                                          <div class="comment-content">
+                                              <!-- 作者 -->
+                                              <div class="comment-author-name vcard"
+                                                  itemprop="author">
+                                                  <cite class="fn">
+                                                      {{.Author.UserName}}
+                                                  </cite>
+                                              </div>
+                                              <!-- 时间 -->
+                                              <div class="comment-metadata">
+                                                  <time datetime="2019-11-08T16:36:35+08:00"
+                                                      itemprop="datePublished">
+                                                    {{date .CreateTime "Y-m-d H:i:s"}}
+                                                    </time>
+                                              </div>
+                                              <!-- 内容 -->
+                                              <div class="comment-body" itemprop="comment">
+                                                  <p>{{.Content}}</p>
+                                              </div>
+                                          </div>
+                                      </article>
+                                  </li>
+                              </ol>
+                          {{end}}
+                      </li>
+                  {{end}}
+              </ol>
+
+              <div class="comment-respond">
+                  <form class="comment-form" >
+                      <input type="hidden" id="post_id" value="{{.post.Id}}">
+                      <input type="hidden" id="pid" name="pid" value="">
+                    <p>
+                      <textarea id="content" name="content"
+                            rows="8" aria-required="true"></textarea>
+                    </p>
+                    <p class="form-submit">
+                      <input type="button" id="comment_add"
+                            class="button" value="发表评论">
+                    </p>
+                  </form>
+              </div>
+          </div>
+      </div>
+      </div>
+    </div>
+  </article>
+  <!--article end-->
+<aside>
+  <div class="paihang">
+    <h2 class="aside_title">管理员推荐</h2>
+    <ol start="1">
+      <li>
+        <a href="/" target="_blank">
+          有道无术，术尚可求也，有术无道，止于术。
+        </a>
+      </li>
+    </ol>
+    <ol start="2">
+      <li>
+        <a href="/" target="_blank">
+          弱小和无知不是生存的障碍，傲慢才是。
+        </a>
+      </li>
+    </ol>
+    <ol start="3">
+      <li>
+        <a href="/" target="_blank">
+          君子务本,本立而道生。
+        </a>
+      </li>
+    </ol>
+  </div>
+  <div class="links">
+    <h2 class="aside_title">其他入口</h2>
+    <ul>
+      <li><a href="http://github.com/vczs" target="_blank">github</a></li>
+      <li><a href="https://hub.docker.com/u/vczs" target="_blank">dockerhub</a></li>
+      <li><a href="/cms" target="_blank">管理员登录</a></li>
+    </ul>
+  </div>
+</aside>
+  <!--aside end--> 
+</main>
+{{template "front/footer.html" .}}
+<!--footer end-->
+
+<script>
+    var comment_add = document.getElementById("comment_add");
+    comment_add.onclick = function (ev) {
+        var post_id = $("#post_id").val();
+        var pid = $("#pid").val();
+        var content = $("#content").val();
+        $.ajax({
+            url:"{{urlfor "CommentController.Post"}}",
+            type:"POST",
+            data:{
+                "post_id":post_id,
+                "pid":pid,
+                "content":content
+            },
+            success:function (data) {
+                if (data["code"] == 200) {
+                    alert(data["msg"]);
+                    window.location.reload()
+                }else {
+                    if (data["code"] == 401){
+                        window.location.href = "/login"
+                    }
+                    alert(data["msg"]);
+                }
+
+            },
+            fail:function (data) {
+                alert(data)
+            }
+        })
+    };
+
+    var replys = document.getElementsByClassName("reply");
+    for(var i=0;i<replys.length;i++){
+        replys[i].onclick = function (ev) {
+
+            var input_id_tag = this.previousElementSibling || this.previousSibling;
+            var comment_id = input_id_tag.value;
+
+            var input_username_tag = input_id_tag.previousElementSibling || input_id_tag.previousSibling;
+            var user_name = input_username_tag.value;
+
+            var content = document.getElementById("content");
+            var pid = document.getElementById("pid");
+            placeCaretAtEnd(content);
+            content.value = "@" + user_name + " ";
+            pid.value = comment_id
+
+        }
+    }
+
+    function placeCaretAtEnd(el) { //传入光标要去的jq节点对象
+        el.focus();
+        if (typeof window.getSelection != "undefined" && typeof document.createRange != "undefined") {
+            var range = document.createRange();
+            range.selectNodeContents(el);
+            range.collapse(false);
+            var sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+        } else if (typeof document.body.createTextRange != "undefined") {
+            var textRange = document.body.createTextRange();
+            textRange.moveToElementText(el);
+            textRange.collapse(false);
+            textRange.select();
+        }
+    }
+</script>
+</body>
+</html>

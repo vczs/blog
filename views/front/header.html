@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vincenzo</title>
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="/">首页</a></li>
+            <li><a href="#">golang</a></li>
+            <li><a href="#">mysql</a></li>
+            <li><a href="#">java</a></li>
+            <li><a href="#">docker</a></li>
+            <li><a href="#">html5</a></li>
+
+            {{if compare .username ""}}
+                <li style="float: right">
+                    <a href="/login">登录</a>
+                </li>
+                <li style="float: right">
+                    <a href="/register">注册</a>
+                </li>
+            {{else}}
+                <li style="float: right">
+                    <a href="/">{{.username}}</a>
+                </li>
+                <li style="float: right">
+                    <a href="/unlogin" style="color: brown;">退出</a>
+                </li>
+            {{end}}
+        </ul>
+    </nav>
+</header>
+</body>
+</html>

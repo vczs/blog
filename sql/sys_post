@@ -1,0 +1,13 @@
+CREATE TABLE `sys_post` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL DEFAULT '' COMMENT '帖子标题',
+  `desc` varchar(255) NOT NULL DEFAULT '' COMMENT '帖子描述',
+  `content` varchar(4000) NOT NULL DEFAULT '' COMMENT '帖子内容',
+  `cover` varchar(255) NOT NULL DEFAULT 'static/upload/no_pic.jpg' COMMENT '帖子封面图',
+  `read_num` int NOT NULL DEFAULT '0' COMMENT '帖子阅读数',
+  `star_num` int NOT NULL DEFAULT '0' COMMENT '帖子点赞数',
+  `author_id` int NOT NULL COMMENT '帖子作者',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
+
